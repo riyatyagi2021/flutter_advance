@@ -1,8 +1,82 @@
+/*
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'home.dart';
+
+
+
+
+void main() { runApp(MyApp());}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: PhoneAuthentication(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+
+class PhoneAuthentication extends StatefulWidget {
+  const PhoneAuthentication({Key? key}) : super(key: key);
+
+  @override
+  _PhoneAuthenticationState createState() => _PhoneAuthenticationState();
+}
+
+class _PhoneAuthenticationState extends State<PhoneAuthentication> {
+
+  // TextEditingController number=TextEditingController();
+
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Center(
+            child: Container(
+                child: Text(" something wrong")
+            ),
+          );
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return Hello();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return CircularProgressIndicator();
+      },
+    );
+  }*/
+
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() { runApp(MyApp());}
+import 'home.dart';
+import 'login.dart';
+//import 'package:slider_demo/login.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  runApp(MyApp());
+
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -142,17 +216,19 @@ class _IntroState extends State<Intro> {
   }
 
   void onDonePress(){
-    /*Navigator.push(
-           context,
-          MaterialPageRoute(builder: (context) => PageSecond()),
-         );*/
+
   }
 
   void onSkipPress(){
-  /*  Navigator.push(
+ /*Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => PageSecond()),
+      MaterialPageRoute(builder: (context) => PhoneAuthentication()),
     );*/
+ Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Hello()),
+    );
+
   }
 
   Widget renderSkipBtn(){
@@ -205,7 +281,7 @@ class _IntroState extends State<Intro> {
       // typeDotAnimation: dotSliderAnimation.SIZE_TRANSITION,
       sizeDot: 15.0,
 
-      hideStatusBar: true,
+      //hideStatusBar: true,
       backgroundColorAllSlides: Colors.blue,
 
 

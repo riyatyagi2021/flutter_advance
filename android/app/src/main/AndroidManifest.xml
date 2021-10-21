@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.slider_demo">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="slider_demo"
+        android:label="advance_flutter"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
