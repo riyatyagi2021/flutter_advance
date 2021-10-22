@@ -35,6 +35,8 @@ dependencies:
   firebase_analytics: ^8.3.3
   pinput: ^1.2.1
   fluttertoast: ^8.0.8
+  lottie: ^1.2.1
+  google_sign_in: ^5.0.0
 
 
 

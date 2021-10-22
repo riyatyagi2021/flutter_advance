@@ -5,7 +5,7 @@ import 'package:pinput/pin_put/pin_put.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-import 'home.dart';
+import '../home.dart';
 
 class OtpScreen extends StatefulWidget {
 
@@ -108,6 +108,7 @@ class _OtpScreenState extends State<OtpScreen> {
          if (e.code == 'invalid-phone-number') {
            print('The provided phone number is not valid.');
          }
+         print("My api exception ${e.message}");
        },
        codeSent: (String verificationId, int? resendToken) {
          setState(() {

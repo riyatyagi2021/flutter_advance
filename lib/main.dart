@@ -62,13 +62,14 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
     );
   }*/
 
+import 'package:advance_flutter/google_authenticatuon/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'home.dart';
-import 'login.dart';
+import 'phone_authetication/login.dart';
 //import 'package:slider_demo/login.dart';
 
 void main() async{
@@ -113,7 +114,7 @@ class _IntroState extends State<Intro> {
             // alignment: Alignment.bottomCenter,
             margin: EdgeInsets.only(top: 300),
             padding: EdgeInsets.only(top: 20,left: 40),
-            color: Colors.teal.withOpacity(0.5),
+            color: Colors.blue.withOpacity(0.5),
             height: 300,
             width: 500,
             // decoration: ,
@@ -148,7 +149,7 @@ class _IntroState extends State<Intro> {
             child: Container(
               margin: EdgeInsets.only(top: 300),
               padding: EdgeInsets.only(top: 20,left: 40),
-              color: Colors.teal.withOpacity(0.5),
+              color: Colors.blue.withOpacity(0.5),
               height: 300,
               width: 400,
 
@@ -172,8 +173,8 @@ class _IntroState extends State<Intro> {
             ),
           ),
           backgroundImage:'assets/images/villa2.png' ,
-          backgroundImageFit: BoxFit.cover
-
+          backgroundImageFit: BoxFit.cover,
+        backgroundOpacity: 0.0,
       ),
     );
 
@@ -183,7 +184,7 @@ class _IntroState extends State<Intro> {
             child: Container(
               margin: EdgeInsets.only(top: 300),
               padding: EdgeInsets.only(top: 20,left: 40),
-              color: Colors.teal.withOpacity(0.5),
+              color: Colors.blue.withOpacity(0.5),
               height: 300,
               width: 400,
               // decoration: ,
@@ -206,8 +207,8 @@ class _IntroState extends State<Intro> {
             ),
           ),
           backgroundImage:'assets/images/villa5.jpeg' ,
-          backgroundImageFit: BoxFit.fitHeight
-
+          backgroundImageFit: BoxFit.fitHeight,
+        backgroundOpacity: 0.0
         // widthImage: 350,
         // heightImage:  700,
 
@@ -220,13 +221,18 @@ class _IntroState extends State<Intro> {
   }
 
   void onSkipPress(){
- /*Navigator.push(
+/* Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PhoneAuthentication()),
     );*/
- Navigator.push(
+/* Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Hello()),
+    );*/
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginGoogle()),
     );
 
   }

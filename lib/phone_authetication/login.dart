@@ -1,6 +1,6 @@
 
 
-import 'package:advance_flutter/otp_screen.dart';
+import 'package:advance_flutter/phone_authetication/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
