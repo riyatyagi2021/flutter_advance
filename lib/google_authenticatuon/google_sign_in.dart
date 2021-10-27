@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 
 class LoginGoogle extends StatefulWidget {
   const LoginGoogle({Key? key}) : super(key: key);
@@ -17,8 +19,33 @@ class _LoginGoogleState extends State<LoginGoogle> {
    FirebaseAuth auth=FirebaseAuth.instance;
   GoogleSignIn googleSignIn=GoogleSignIn();
 
-  /*late User userr;
-  var a=userr!.userr!.email;*/
+
+
+ void onFacebookLogin() async{
+   final LoginResult result = await FacebookAuth.instance.login(
+     permissions: ['public_profile', 'email', 'pages_show_list', 'pages_messaging', 'pages_manage_metadata'],
+   );
+   if (result.status == LoginStatus.success) {
+
+     print("u r loggwed in"+result.status.toString());
+
+
+
+     final AccessToken? accessToken = await FacebookAuth.instance.accessToken;
+
+     if (accessToken != null) {
+    print("heyyyyyyyyyyyy"+accessToken.token);
+     }
+
+   } else {
+     print(result.status);
+     print(result.message);
+   }
+  }
+
+
+
+
 
    Future<User?>  signIn() async{
        GoogleSignInAccount? googleSignInAccount=await googleSignIn.signIn();
@@ -34,8 +61,8 @@ class _LoginGoogleState extends State<LoginGoogle> {
       User? user=await authResult.user;
 
       print("Username: ${user!.displayName}");
-      print("Email: ${user!.email}");
-      print("Image: ${user!.photoURL}");
+      print("Email: ${user.email}");
+      print("Image: ${user.photoURL}");
 
        return user;
      }
@@ -182,7 +209,10 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                   child: RaisedButton(
                                     color:Colors.indigo,
                                     onPressed: (){
-                                      signOut();
+                                     // signOut();
+                                      onFacebookLogin();
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Hello()));
+
                                     },
                                     child:Text(
                                       "f  Facebook",

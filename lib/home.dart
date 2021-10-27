@@ -91,6 +91,11 @@ print("gfdcvbn" + msg.toString());
         ));
   }
 
+
+  void crash(){
+    var arr = [6,7];
+    print(arr[8]);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,8 +108,7 @@ print("gfdcvbn" + msg.toString());
 
             ElevatedButton(
               child: Text("See notifications"),
-              onPressed:showNotifications,
-
+              onPressed: showNotifications,
             )
 
           ],

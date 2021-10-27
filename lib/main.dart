@@ -71,6 +71,7 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+
 import 'home.dart';
 
 
@@ -100,13 +101,6 @@ Future <void> main() async{
   FirebaseMessaging.onBackgroundMessage((firebaseMessagingBackgroundHandler));
 
 
-
- /* if (defaultTargetPlatform == TargetPlatform.android) {
-    await flutterLocalNotificationsPlugin.
-    resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
-  }*/
-
   await flutterLocalNotificationsPlugin.
   resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
@@ -116,7 +110,6 @@ Future <void> main() async{
     alert: true,
     badge: true
   );
-
 
   runApp(MyApp());
 
@@ -268,15 +261,15 @@ class _IntroState extends State<Intro> {
       context,
       MaterialPageRoute(builder: (context) => PhoneAuthentication()),
     );*/
- Navigator.push(
+/* Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Hello()),
-    );
+    );*/
 
-  /*  Navigator.push(
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginGoogle()),
-    );*/
+    );
 
   }
 
