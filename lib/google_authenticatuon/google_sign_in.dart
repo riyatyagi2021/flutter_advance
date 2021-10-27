@@ -17,6 +17,8 @@ class _LoginGoogleState extends State<LoginGoogle> {
    FirebaseAuth auth=FirebaseAuth.instance;
   GoogleSignIn googleSignIn=GoogleSignIn();
 
+  /*late User userr;
+  var a=userr!.userr!.email;*/
 
    Future<User?>  signIn() async{
        GoogleSignInAccount? googleSignInAccount=await googleSignIn.signIn();
@@ -30,10 +32,12 @@ class _LoginGoogleState extends State<LoginGoogle> {
        UserCredential authResult=await auth.signInWithCredential(credential);
 
       User? user=await authResult.user;
+
       print("Username: ${user!.displayName}");
-      return user;
+      print("Email: ${user!.email}");
+      print("Image: ${user!.photoURL}");
 
-
+       return user;
      }
 
 

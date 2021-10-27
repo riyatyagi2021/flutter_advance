@@ -63,18 +63,61 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
   }*/
 
 import 'package:advance_flutter/google_authenticatuon/google_sign_in.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'home.dart';
-import 'phone_authetication/login.dart';
-//import 'package:slider_demo/login.dart';
 
-void main() async{
+
+// AndroidInitializationSettings('app_icon');
+
+const AndroidNotificationChannel channel=AndroidNotificationChannel(
+  'high_importance_channel',
+  'High Importance Notifications',
+ description: 'This is for sending notifications',
+  playSound: true,
+  importance: Importance.high,
+ // ledColor: Colors.orange,
+  //sound: AndroidNotificationSound.
+);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
+
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage msg) async{
+  await Firebase.initializeApp();
+  print("A bg msg just showed up ${msg.messageId}");
+}
+
+Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
+
+  FirebaseMessaging.onBackgroundMessage((firebaseMessagingBackgroundHandler));
+
+
+
+ /* if (defaultTargetPlatform == TargetPlatform.android) {
+    await flutterLocalNotificationsPlugin.
+    resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+  }*/
+
+  await flutterLocalNotificationsPlugin.
+  resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    sound: true,
+    alert: true,
+    badge: true
+  );
+
+
   runApp(MyApp());
 
 }
@@ -225,15 +268,15 @@ class _IntroState extends State<Intro> {
       context,
       MaterialPageRoute(builder: (context) => PhoneAuthentication()),
     );*/
-/* Navigator.push(
+ Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Hello()),
-    );*/
+    );
 
-    Navigator.push(
+  /*  Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginGoogle()),
-    );
+    );*/
 
   }
 
