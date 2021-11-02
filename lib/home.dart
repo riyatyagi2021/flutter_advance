@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:open_mail_app/open_mail_app.dart';
+
 
 class Hello extends StatefulWidget {
   const Hello({Key? key}) : super(key: key);
@@ -141,6 +144,14 @@ class _HelloState extends State<Hello> {
             child: Text("Update value by 1"),
             onPressed: updateby1,
           ),
+          ElevatedButton(
+            child: Text("Call Satish Tiwari"),
+            onPressed: () => launch("tel://7409616828"),
+          ),
+          ElevatedButton(
+            child: Text("Open your mail"),
+            onPressed: () => launch("mailto://riya.mobcoder@gmail.com"),
+          ),
         ],
       )),
     );
@@ -149,7 +160,6 @@ class _HelloState extends State<Hello> {
   createDB() {
    dbr.child("Name").set("Riya Tyagi");
    dbr.child("Profile").set("Flutter developer");
-  // dbr.child("Key_Counter").set("1");
    dbr.child("Websites").set({'website1':"www.riya.com",'website2':"www.riyaaaaa.com",});
   }
 
@@ -157,7 +167,6 @@ class _HelloState extends State<Hello> {
     dbr.update({'Name': "Riya Bhardwaj"});
     dbr.update({'Profile': "Android developer"});
   }
-
 
    readatOnce() {
     dbr.once().then((DataSnapshot dataSnapshot) {
@@ -179,8 +188,10 @@ class _HelloState extends State<Hello> {
     dbr.child("Websites").remove();
    }
 
-
    updateby1() {
     dbr.child("myCounter").update({'Key_Counter': countValue+1});
   }
+
+
+
 }
