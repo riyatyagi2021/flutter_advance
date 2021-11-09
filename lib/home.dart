@@ -1,12 +1,12 @@
 import 'package:advance_flutter/main.dart';
+import 'package:advance_flutter/phone_authetication/dropdown_list.dart';
+import 'package:advance_flutter/phone_authetication/google_map.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:open_mail_app/open_mail_app.dart';
-
 
 class Hello extends StatefulWidget {
   const Hello({Key? key}) : super(key: key);
@@ -18,8 +18,8 @@ class Hello extends StatefulWidget {
 class _HelloState extends State<Hello> {
   int counter = 0;
   late DatabaseReference dbr;
- String databaseJson="";
- int countValue=0;
+  String databaseJson = "";
+  int countValue = 0;
 
   @override
   void initState() {
@@ -64,16 +64,13 @@ class _HelloState extends State<Hello> {
       }
     });
 
-    dbr=FirebaseDatabase.instance.reference();
+    dbr = FirebaseDatabase.instance.reference();
     dbr.child("myCounter").child("Key_Counter").onValue.listen((event) {
       print("Counter update" + event.snapshot.value.toString());
       setState(() {
-        countValue=event.snapshot.value;
+        countValue = event.snapshot.value;
       });
-
-
     });
-
   }
 
   void showNotifications() {
@@ -104,94 +101,120 @@ class _HelloState extends State<Hello> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: Text("Hello Notification ${counter}")),
-          ElevatedButton(
-            child: Text("See notifications"),
-            onPressed: showNotifications,
-          ),
+      body: Container(
+        padding: EdgeInsets.all(10),
+          child: ListView(
+            children:[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Text("Hello Notification ${counter}")),
+                  ElevatedButton(
+                    child: Text("See notifications"),
+                    onPressed: showNotifications,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(28.0),
+                    child: Text(countValue.toString()),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(28.0),
+                    child: Text("database json - $databaseJson"),
+                  ),
+                  ElevatedButton(
+                    child: Text("Create Database"),
+                    onPressed: createDB,
+                  ),
+                  ElevatedButton(
+                    child: Text("Read DB at once"),
+                    onPressed: readatOnce,
+                  ),
+                  ElevatedButton(
+                    child: Text("Read one child"),
+                    onPressed: readOneChild,
+                  ),
+                  ElevatedButton(
+                    child: Text("Update Value"),
+                    onPressed: updateValue,
+                  ),
+                  ElevatedButton(
+                    child: Text("Delete Value"),
+                    onPressed: deleteValue,
+                  ),
+                  ElevatedButton(
+                    child: Text("Update value by 1"),
+                    onPressed: updateby1,
+                  ),
+                  ElevatedButton(
+                    child: Text("Call Satish Tiwari"),
+                    onPressed: () => launch("tel://7409616828"),
+                  ),
+                  ElevatedButton(
+                    child: Text("Open your mail"),
+                    onPressed: () => launch("mailto://riya.mobcoder@gmail.com"),
+                  ),
+                  ElevatedButton(
+                    child: Text("Dropdown List"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.orange, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => FirstPage())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Google Map"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.orange, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => GoogleMaps())),
+                  ),
+                ],
+              ),
+            ]
 
-          Padding(
-            padding: const EdgeInsets.all(28.0),
-            child: Text(countValue.toString()),
-          ),
-
-          Padding(
-            padding: const EdgeInsets.all(28.0),
-            child: Text("database json - $databaseJson"),
-          ),
-
-
-          ElevatedButton(
-            child: Text("Create Database"),
-            onPressed: createDB,
-          ), ElevatedButton(
-            child: Text("Read DB at once"),
-            onPressed: readatOnce,
-          ), ElevatedButton(
-            child: Text("Read one child"),
-            onPressed: readOneChild,
-          ), ElevatedButton(
-            child: Text("Update Value"),
-            onPressed: updateValue,
-          ), ElevatedButton(
-            child: Text("Delete Value"),
-            onPressed: deleteValue,
-          ), ElevatedButton(
-            child: Text("Update value by 1"),
-            onPressed: updateby1,
-          ),
-          ElevatedButton(
-            child: Text("Call Satish Tiwari"),
-            onPressed: () => launch("tel://7409616828"),
-          ),
-          ElevatedButton(
-            child: Text("Open your mail"),
-            onPressed: () => launch("mailto://riya.mobcoder@gmail.com"),
-          ),
-        ],
-      )),
+          )),
     );
   }
 
   createDB() {
-   dbr.child("Name").set("Riya Tyagi");
-   dbr.child("Profile").set("Flutter developer");
-   dbr.child("Websites").set({'website1':"www.riya.com",'website2':"www.riyaaaaa.com",});
+    dbr.child("Name").set("Riya Tyagi");
+    dbr.child("Profile").set("Flutter developer");
+    dbr.child("Websites").set({
+      'website1': "www.riya.com",
+      'website2': "www.riyaaaaa.com",
+    });
   }
 
-  updateValue(){
+  updateValue() {
     dbr.update({'Name': "Riya Bhardwaj"});
     dbr.update({'Profile': "Android developer"});
   }
 
-   readatOnce() {
+  readatOnce() {
     dbr.once().then((DataSnapshot dataSnapshot) {
       setState(() {
-        databaseJson=dataSnapshot.value.toString();
+        databaseJson = dataSnapshot.value.toString();
       });
     });
   }
 
-   readOneChild(){
-    dbr.child("Websites").child("website2").once().then((DataSnapshot dataSnapshot) {
+  readOneChild() {
+    dbr
+        .child("Websites")
+        .child("website2")
+        .once()
+        .then((DataSnapshot dataSnapshot) {
       setState(() {
-        databaseJson=dataSnapshot.value.toString();
+        databaseJson = dataSnapshot.value.toString();
       });
     });
-   }
-
-   deleteValue(){
-    dbr.child("Websites").remove();
-   }
-
-   updateby1() {
-    dbr.child("myCounter").update({'Key_Counter': countValue+1});
   }
 
+  deleteValue() {
+    dbr.child("Websites").remove();
+  }
 
-
+  updateby1() {
+    dbr.child("myCounter").update({'Key_Counter': countValue + 1});
+  }
 }
