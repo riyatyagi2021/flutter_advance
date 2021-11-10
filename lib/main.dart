@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'home.dart';
+import 'home_main.dart';
 
 
 
@@ -72,7 +72,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 
-import 'home.dart';
+import 'home_main.dart';
 
 
 // AndroidInitializationSettings('app_icon');
@@ -119,9 +119,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-       // primarySwatch: Mater(Colors.black),
-      ),
+      themeMode: ThemeMode.dark,
+      //darkTheme: ThemeData.dark(),
       home: Intro(),
       debugShowCheckedModeBanner: false,
     );
@@ -264,15 +263,15 @@ class _IntroState extends State<Intro> {
       context,
       MaterialPageRoute(builder: (context) => PhoneAuthentication()),
     );*/
-/* Navigator.push(
+ Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Hello()),
-    );*/
+    );
 
-    Navigator.push(
+   /* Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginGoogle()),
-    );
+    );*/
 
   }
 

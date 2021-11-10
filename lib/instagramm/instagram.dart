@@ -3,7 +3,7 @@ import 'package:advance_flutter/instagramm/search.dart';
 import 'package:advance_flutter/instagramm/user_account.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+import 'home/home.dart';
 import 'likes.dart';
 
 class Instagram extends StatefulWidget {
@@ -28,7 +28,7 @@ class _InstagramState extends State<Instagram> {
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 30,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         elevation: 5,
         currentIndex: currentIndex,
         onTap: (index){
@@ -38,24 +38,24 @@ class _InstagramState extends State<Instagram> {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home,color: Colors.white,),
+              icon: Icon(Icons.home,color: Colors.black,),
               label: "",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search,color: Colors.white,),
+              icon: Icon(Icons.search,color: Colors.black,),
               label: "",
 
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.slideshow,color: Colors.white,),
+              icon: Icon(Icons.slideshow,color: Colors.black,),
               label: "",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite,color: Colors.white,),
+              icon: Icon(Icons.favorite,color: Colors.black,),
               label: "",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person,color: Colors.white,),
+              icon: Icon(Icons.person,color: Colors.black,),
               label: "",
           ),
 

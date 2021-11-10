@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
@@ -14,21 +14,18 @@ class GoogleMaps extends StatefulWidget {
 class _GoogleMapsState extends State<GoogleMaps> {
   Set<Marker> markers = {};
 
-  Set<Polyline> polyline={};
+  Set<Polyline> polyline = {};
 
   List<LatLng> latlng = [];
-  LatLng _new = LatLng(33.738045, 73.084488);
-  LatLng _news = LatLng(33.567997728, 72.635997456);
-
-  // latlng.add(_new);
-  // latlng.add(_news);
+  LatLng _new = LatLng(28.738045, 78.084488);
+  LatLng _news = LatLng(28.567997728, 77.635997456);
 
   GoogleMapController? mapController;
   Location currentLocation = Location();
   final CameraPosition initialPos =
       CameraPosition(target: LatLng(28.535517, 77.391029), zoom: 5);
 
-  /*getLocation() async {
+  getUserLocation() async {
     var location = await currentLocation.getLocation();
     currentLocation.onLocationChanged.listen((LocationData loc) {
       mapController!.animateCamera(CameraUpdate.newCameraPosition(
@@ -43,7 +40,19 @@ class _GoogleMapsState extends State<GoogleMaps> {
         ));
       });
     });
-  }*/
+  }
+
+
+ // getLocation() async
+ //  {
+ //    A.Position position = await A.Geolocator.getCurrentPosition(desiredAccuracy: A.LocationAccuracy.high);
+ //    debugPrint('location: ${position.latitude}');
+ //    final coordinates = new Coordinates(position.latitude, position.longitude);
+ //    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+ //    var first = addresses.first;
+ //    print("${first.featureName} : ${first.addressLine}");
+ //  }
+
 
   addMarker(coordinate) {
     int id = Random().nextInt(500);
@@ -53,12 +62,16 @@ class _GoogleMapsState extends State<GoogleMaps> {
         position: coordinate,
         //icon:(Icons.location_on )
       ));
+
+      polyline.add(Polyline(
+        polylineId: PolylineId("h"),
+        visible: true,
+        //latlng is List<LatLng>
+        points: latlng,
+        color: Colors.black,
+      ));
     });
   }
-
-  // polyline.add(Polyline(
-  //
-  //     ));
 
   getPoints() {
     return [
@@ -76,14 +89,14 @@ class _GoogleMapsState extends State<GoogleMaps> {
       LatLng(28.445517, 77.181029),
       LatLng(28.435517, 77.271029),
       LatLng(28.535517, 77.391029),
-
-
     ];
   }
 
-
   @override
   Widget build(BuildContext context) {
+    latlng.add(_new);
+    latlng.add(_news);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 18.0),
@@ -102,23 +115,27 @@ class _GoogleMapsState extends State<GoogleMaps> {
           },
           markers: markers,
           polylines: polyline,
-    polygons: Set<Polygon>.of(<Polygon>[
-    Polygon(
-    polygonId: PolygonId('area'),
-    points: getPoints(),
-    geodesic: true,
-    strokeColor: Colors.red.withOpacity(0.6),
-    strokeWidth: 5,
-    fillColor: Colors.redAccent.withOpacity(0.1),
-    visible: true),
-
-
-    ]
-
+          polygons: Set<Polygon>.of(<Polygon>[
+            Polygon(
+                polygonId: PolygonId('area'),
+                points: getPoints(),
+                geodesic: true,
+                strokeColor: Colors.red.withOpacity(0.6),
+                strokeWidth: 5,
+                fillColor: Colors.redAccent.withOpacity(0.1),
+                visible: true),
+          ]),
         ),
       ),
-      )
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //getLocation;
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Icon(Icons.add),
+        ),
+      ),
     );
-
   }
 }

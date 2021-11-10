@@ -5,7 +5,7 @@ import 'package:pinput/pin_put/pin_put.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-import '../home.dart';
+import '../home_main.dart';
 
 class OtpScreen extends StatefulWidget {
 

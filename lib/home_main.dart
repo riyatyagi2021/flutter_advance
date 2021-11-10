@@ -1,5 +1,6 @@
 import 'package:advance_flutter/instagramm/instagram.dart';
 import 'package:advance_flutter/main.dart';
+import 'package:advance_flutter/others/animations.dart';
 import 'package:advance_flutter/others/dropdown_list.dart';
 import 'package:advance_flutter/others/google_map.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -21,6 +22,28 @@ class _HelloState extends State<Hello> {
   late DatabaseReference dbr;
   String databaseJson = "";
   int countValue = 0;
+
+
+
+//// Animationnnsss
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const Instagram(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 2.0);
+        const end = Offset.zero;
+        const curve = Curves.slowMiddle;
+
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
 
   @override
   void initState() {
@@ -103,7 +126,7 @@ class _HelloState extends State<Hello> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.all(20),
           child: ListView(
             children:[
               Column(
@@ -175,7 +198,16 @@ class _HelloState extends State<Hello> {
                     style: ElevatedButton.styleFrom(
                         primary: Colors.purple, padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => Instagram())),
+                        context,  _createRoute(),
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Animations"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.teal, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Animations())),
                   ),
                 ],
               ),
