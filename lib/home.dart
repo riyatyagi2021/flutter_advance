@@ -1,6 +1,7 @@
+import 'package:advance_flutter/instagramm/instagram.dart';
 import 'package:advance_flutter/main.dart';
-import 'package:advance_flutter/phone_authetication/dropdown_list.dart';
-import 'package:advance_flutter/phone_authetication/google_map.dart';
+import 'package:advance_flutter/others/dropdown_list.dart';
+import 'package:advance_flutter/others/google_map.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -164,9 +165,17 @@ class _HelloState extends State<Hello> {
                   ElevatedButton(
                     child: Text("Google Map"),
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.orange, padding: EdgeInsets.all(20)),
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => GoogleMaps())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Open Instagram"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.purple, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Instagram())),
                   ),
                 ],
               ),

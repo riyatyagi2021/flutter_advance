@@ -56,9 +56,9 @@ class _GoogleMapsState extends State<GoogleMaps> {
     });
   }
 
-  polyline.add(Polyline(
-
-      ));
+  // polyline.add(Polyline(
+  //
+  //     ));
 
   getPoints() {
     return [
@@ -75,7 +75,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
       LatLng(28.455517, 77.291029),
       LatLng(28.445517, 77.181029),
       LatLng(28.435517, 77.271029),
-      LatLng(28.425517, 77.261029),
+      LatLng(28.535517, 77.391029),
 
 
     ];
@@ -101,7 +101,7 @@ class _GoogleMapsState extends State<GoogleMaps> {
             addMarker(coordinate);
           },
           markers: markers,
-
+          polylines: polyline,
     polygons: Set<Polygon>.of(<Polygon>[
     Polygon(
     polygonId: PolygonId('area'),

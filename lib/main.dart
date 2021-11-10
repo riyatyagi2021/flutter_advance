@@ -119,6 +119,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+       // primarySwatch: Mater(Colors.black),
+      ),
       home: Intro(),
       debugShowCheckedModeBanner: false,
     );
