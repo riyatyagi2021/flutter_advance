@@ -2,6 +2,7 @@ import 'package:advance_flutter/instagramm/home/stories.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
 class Home extends StatefulWidget {
@@ -12,6 +13,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  List images=[
+    'assets/images/villa5.jpeg',
+    'assets/images/anime.jpeg',
+    'assets/images/ani.jpeg',
+    'assets/images/villa5.jpeg',
+    'assets/images/anime.jpeg',
+    'assets/images/ani.jpeg',
+  ];
+
+int currentPicIndex=0;
+
+  Widget allImages(String urlImage,int index)=>Container(
+    margin: EdgeInsets.symmetric(horizontal: 5),
+    color: Colors.black,
+    child: Image.asset(
+      urlImage,
+      fit: BoxFit.cover,
+    ),
+  );
+
+ Widget indicator()=>AnimatedSmoothIndicator(
+   effect: SlideEffect(
+     dotHeight: 10,
+     dotWidth: 10,
+     activeDotColor: Colors.red,
+     dotColor: Colors.blue
+   ),
+  activeIndex: currentPicIndex,
+  count: images.length);
 
 
   @override
@@ -58,7 +89,7 @@ class _HomeState extends State<Home> {
             children: [
               Container(
                 //color: Colors.white,
-                height: 540,
+                height: 560,
                 decoration: BoxDecoration(
                     color: Colors.white,
                   border: Border.all(color: Colors.black26)
@@ -101,11 +132,33 @@ class _HomeState extends State<Home> {
 
                       ),
                     ),
-                    Image.asset(
+                    CarouselSlider.builder(
+                      options:CarouselOptions(
+                        enableInfiniteScroll: false,
+                        viewportFraction: 1,
+                        height: 280,
+                        initialPage: 0,
+                        scrollDirection: Axis.horizontal,
+                        onPageChanged: (index,reason){
+                          setState(() {
+                            currentPicIndex=index;
+                          });
+                        }
+                      ),
+                      itemCount: images.length,
+                      itemBuilder: (BuildContext context, int index, int realIndex) {
+                          final urlImage=images[index];
+                          return allImages(urlImage,index);
+                      },
+
+                    ),
+                   SizedBox(height: 10,),
+                   Center(child: indicator()),
+                   /* Image.asset(
                       'assets/images/villa5.jpeg',
                       height: 280,
                       width: MediaQuery.of(context).size.width,
-                    ),
+                    ),*/
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 15),
@@ -253,7 +306,9 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+
   }
+
 }
 
 
