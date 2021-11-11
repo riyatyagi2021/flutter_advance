@@ -115,6 +115,7 @@ class _AnimationsState extends State<Animations> with TickerProviderStateMixin {
                     height: 100,
                     width: 100,
                     color: Colors.purple,
+                    margin: EdgeInsets.only(bottom: 60),
                     child: AnimatedAlign(
                         alignment: selected? Alignment.centerLeft: Alignment.centerRight,
                         duration: Duration(milliseconds: 500),

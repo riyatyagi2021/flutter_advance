@@ -1,5 +1,7 @@
 import 'package:advance_flutter/instagramm/home/stories.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 
 class Home extends StatefulWidget {
@@ -18,7 +20,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black26,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Text(
           "Instagram",
@@ -34,7 +36,7 @@ class _HomeState extends State<Home> {
           Container(
               margin: EdgeInsets.only(right: 20, left: 30),
               child: Icon(
-                Icons.messenger_outline_sharp,
+                FontAwesomeIcons.facebookMessenger,
                 color: Colors.black,
                 size: 30,
               )),
@@ -49,14 +51,18 @@ class _HomeState extends State<Home> {
           itemBuilder: (BuildContext context, int index)=>index==0
           ?  SizedBox(
             child: Stories(),
-            height: deviceSize.height * 0.18,
+            height: deviceSize.height * 0.15,
           ):Column(
             //crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                color: Colors.white,
+                //color: Colors.white,
                 height: 540,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                  border: Border.all(color: Colors.black26)
+                ),
                 // width:400,
                 child: Column(
 
@@ -97,7 +103,8 @@ class _HomeState extends State<Home> {
                     ),
                     Image.asset(
                       'assets/images/villa5.jpeg',
-                      width: double.infinity,
+                      height: 280,
+                      width: MediaQuery.of(context).size.width,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -117,7 +124,7 @@ class _HomeState extends State<Home> {
                                 width: 10,
                               ),
                               Icon(
-                                Icons.mode_comment_outlined,
+                                FontAwesomeIcons.comment,
                                 color: Colors.black,
                                 size: 27,
                               ),
@@ -125,14 +132,14 @@ class _HomeState extends State<Home> {
                                 width: 10,
                               ),
                               Icon(
-                                Icons.near_me_outlined,
+                                Icons.near_me_rounded,
                                 color: Colors.black,
                                 size: 27,
                               ),
                             ],
                           ),
                           Icon(
-                            Icons.bookmark,
+                            FontAwesomeIcons.bookmark,
                             color: Colors.black,
                             size: 27,
                           ),

@@ -31,7 +31,7 @@ class _StoriesState extends State<Stories> {
                           bottom: 10,
                           right: -8,
                           child: Icon(
-                            Icons.add_circle_outlined,
+                            Icons.add_circle_sharp,
                             color: Colors.blue,
                           ))
                     ]),
