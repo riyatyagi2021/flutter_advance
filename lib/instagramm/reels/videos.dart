@@ -13,6 +13,10 @@ class VideoScreen extends StatefulWidget {
 
 class _VideoScreenState extends State<VideoScreen> {
 
+  bool selectedLike = true;
+  bool centreLike=false;
+
+
   late VideoPlayerController videoPlayerController;
   ChewieController? chewieController;
 
@@ -162,11 +166,6 @@ class _VideoScreenState extends State<VideoScreen> {
                         ),
                       ],
                     ),
-                    /*Image.asset(
-                                    'assets/images/ani.jpeg',
-                                    height: 30,
-                                    width: 30,
-                                  )*/
                   ],
                 ),
               )

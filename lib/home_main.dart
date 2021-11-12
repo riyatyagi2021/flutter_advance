@@ -10,6 +10,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'others/shimmer_effect.dart';
+
 class Hello extends StatefulWidget {
   const Hello({Key? key}) : super(key: key);
 
@@ -208,6 +210,14 @@ class _HelloState extends State<Hello> {
                         primary: Colors.teal, padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => Animations())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Shimmer Effect"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.teal, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => ShimmerEffect())),
                   ),
                 ],
               ),

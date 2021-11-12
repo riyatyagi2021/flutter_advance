@@ -1,9 +1,12 @@
+import 'package:advance_flutter/instagramm/reels/create_reels_camera_click.dart';
 import 'package:advance_flutter/instagramm/reels/videos.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:video_player/video_player.dart';
+import 'package:like_button/like_button.dart';
+import 'package:camera/camera.dart';
 
 class Reels extends StatefulWidget {
   const Reels({Key? key}) : super(key: key);
@@ -24,6 +27,10 @@ class _ReelsState extends State<Reels> {
     'https://assets.mixkit.co/videos/preview/mixkit-womans-feet-splashing-in-the-pool-1261-large.mp4',
     'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4'
   ];
+
+  bool selectedLike = true;
+  bool centreLike=false;
+
 
 
 
@@ -59,9 +66,6 @@ class _ReelsState extends State<Reels> {
 
   @override
   Widget build(BuildContext context) {
-    print(chewieController.toString() + "nbvcx");
-    bool value = videoPlayerController.value.isInitialized;
-    var device = MediaQuery.of(context).size;
 
     return Scaffold(
       body: SafeArea(
@@ -81,7 +85,14 @@ class _ReelsState extends State<Reels> {
                           chewieController != null &&
                                   chewieController!
                                       .videoPlayerController.value.isInitialized
-                              ? Chewie(controller: chewieController!)
+                              ? GestureDetector(
+                              onDoubleTap: () {
+                                setState(() {
+                                  centreLike = !centreLike;
+                                });
+                              },
+
+                              child: Chewie(controller: chewieController!))
                               : Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -90,10 +101,14 @@ class _ReelsState extends State<Reels> {
                                     Text('Loading...')
                                   ],
                                 ),
-                          // Image.asset(
-                          //   'assets/images/anime.jpeg',
-                          //   fit: BoxFit.cover,
-                          // ),
+                          if(!centreLike) Center(
+                            child: LikeButton(
+                              size: 80,
+                             // animationDuration: Duration(milliseconds: 500),
+
+                            ),
+                          ),
+
                           Positioned(
                             bottom: 10,
                             child: Column(
@@ -108,7 +123,7 @@ class _ReelsState extends State<Reels> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Icon(
-                                            Icons.person,
+                                            Icons.person_pin,
                                             size: 20,
                                           ),
                                         ),
@@ -207,12 +222,16 @@ class _ReelsState extends State<Reels> {
                             bottom: 60,
                             child: Column(
                               children: [
-                                Icon(
-                                  Icons.favorite,
-                                  color: Colors.white,
+                                IconButton(
+                                  icon: Icon(selectedLike?FontAwesomeIcons.heart:Icons.favorite,color: Colors.red,),
+                                  color: Colors.white, onPressed: () {
+                                    setState(() {
+                                   selectedLike= !selectedLike;
+                                    });
+                                },
                                 ),
                                 Text(
-                                  "600k",
+                                  "60k",
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),
@@ -264,9 +283,12 @@ class _ReelsState extends State<Reels> {
                           color: Colors.white,
                           fontSize: 20),
                     ),
-                    Icon(
-                      Icons.camera_alt_rounded,
-                      size: 40,
+                    IconButton(
+                      icon:Icon(Icons.camera_alt_rounded,size: 30,),
+                      onPressed: () async{
+                        await availableCameras().then((value) =>
+                        Navigator.push(context,MaterialPageRoute( builder: (context)=>CreateReels(cameras:value))));
+                      },
                       color: Colors.white,
                     ),
                   ],

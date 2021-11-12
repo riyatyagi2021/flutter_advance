@@ -36,8 +36,8 @@ int currentPicIndex=0;
 
  Widget indicator()=>AnimatedSmoothIndicator(
    effect: SlideEffect(
-     dotHeight: 10,
-     dotWidth: 10,
+     dotHeight: 5,
+     dotWidth: 5,
      activeDotColor: Colors.red,
      dotColor: Colors.blue
    ),
