@@ -63,6 +63,8 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
   }*/
 
 import 'package:advance_flutter/google_authenticatuon/google_sign_in.dart';
+import 'package:advance_flutter/locale_provider/locale_provider.dart';
+import 'package:advance_flutter/slider_demo.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -70,9 +72,14 @@ import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
+import 'flag_widget.dart';
 import 'home_main.dart';
+import 'l10n/i18n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 // AndroidInitializationSettings('app_icon');
@@ -117,220 +124,92 @@ Future <void> main() async{
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+    create:(_)=>LocaleProvider(),
+    builder:(context,child){
+      final provider=Provider.of<LocaleProvider>(context);
+      print(provider.locale?.languageCode);
     return MaterialApp(
       themeMode: ThemeMode.dark,
       //darkTheme: ThemeData.dark(),
-      home: Intro(),
+      home: LanguageChange(),
       debugShowCheckedModeBanner: false,
+      supportedLocales: L10n.all,
+
+      locale: provider.locale,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
     );
-  }
+  });
 }
 
-
-class Intro extends StatefulWidget {
-  const Intro({Key? key}) : super(key: key);
+class LanguageChange extends StatefulWidget {
+  const LanguageChange({Key? key}) : super(key: key);
 
   @override
-  _IntroState createState() => _IntroState();
+  _LanguageChangeState createState() => _LanguageChangeState();
 }
 
-class _IntroState extends State<Intro> {
-
-  List<Slide> slides=[];
+class _LanguageChangeState extends State<LanguageChange> {
 
   @override
   void initState() {
     super.initState();
 
-    slides.add(
-      Slide(
-        backgroundColor: Colors.white,
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      final provider = Provider.of<LocaleProvider>(context, listen: false);
 
-        centerWidget:Center(
-          child: Container(
-            // alignment: Alignment.bottomCenter,
-            margin: EdgeInsets.only(top: 300),
-            padding: EdgeInsets.only(top: 20,left: 40),
-            color: Colors.blue.withOpacity(0.5),
-            height: 300,
-            width: 500,
-            // decoration: ,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Discover\nPlaces Near You",textAlign: TextAlign.left,style:TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30
-                ),),
-                SizedBox(height: 10,),
-                Text("Find the best properties",style:TextStyle(
-                    color: Colors.white,
-                    // fontWeight: FontWeight.bold,
-                    fontSize: 25
-                ),)
-              ],
-            ),
-          ),
-        ),
-        backgroundImage:'assets/images/villa5.jpeg' ,
-        backgroundImageFit: BoxFit.fitHeight,
-        backgroundOpacity: 0.0,
-
-      ),
-    );
-
-    slides.add(
-      Slide(
-          centerWidget:Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 300),
-              padding: EdgeInsets.only(top: 20,left: 40),
-              color: Colors.blue.withOpacity(0.5),
-              height: 300,
-              width: 400,
-
-              // decoration: ,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Search\nProperties Easily",style:TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30
-                  ),),
-                  SizedBox(height: 10,),
-                  Text("World's most attractive locations",style:TextStyle(
-                      color: Colors.white,
-                      //fontWeight: FontWeight.bold,
-                      fontSize:25
-                  ),)
-                ],
-              ),
-            ),
-          ),
-          backgroundImage:'assets/images/villa2.png' ,
-          backgroundImageFit: BoxFit.cover,
-        backgroundOpacity: 0.0,
-      ),
-    );
-
-    slides.add(
-      Slide(
-          centerWidget:Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 300),
-              padding: EdgeInsets.only(top: 20,left: 40),
-              color: Colors.blue.withOpacity(0.5),
-              height: 300,
-              width: 400,
-              // decoration: ,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Ready to move\nProperties",style:TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30
-                  ),),
-                  SizedBox(height: 10,),
-                  Text("Become part of our success story",style:TextStyle(
-                      color: Colors.white,
-                      // fontWeight: FontWeight.bold,
-                      fontSize:25
-                  ),)
-                ],
-              ),
-            ),
-          ),
-          backgroundImage:'assets/images/villa5.jpeg' ,
-          backgroundImageFit: BoxFit.fitHeight,
-        backgroundOpacity: 0.0
-        // widthImage: 350,
-        // heightImage:  700,
-
-      ),
-    );
-  }
-
-  void onDonePress(){
-
-  }
-
-  void onSkipPress(){
-/* Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PhoneAuthentication()),
-    );*/
- Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Hello()),
-    );
-
-   /* Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => LoginGoogle()),
-    );*/
-
-  }
-
-  Widget renderSkipBtn(){
-    return Text(
-      "Skip", style: TextStyle(fontSize: 15,color: Colors.black),
-    );
-  }
-
-  Widget renderNxtBtn(){
-    return Icon(
-      Icons.navigate_next,
-      color: Colors.black,
-    );
-  }
-
-  Widget renderDonebtn(){
-    return Text(
-      "Done", style: TextStyle(fontSize: 15,color: Colors.black),
-    );
-  }
-
-  ButtonStyle myButtonStyle() {
-    return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-      overlayColor: MaterialStateProperty.all<Color>(Colors.green),
-    );
+      provider.clearLocale();
+    });
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return IntroSlider(
-      slides: this.slides,
-
-      renderSkipBtn: this.renderSkipBtn(),
-      onSkipPress: this.onSkipPress,
-      skipButtonStyle: myButtonStyle(),
-
-      renderNextBtn: this.renderNxtBtn(),
-      nextButtonStyle: myButtonStyle(),
-
-      renderDoneBtn: this.renderDonebtn(),
-      onDonePress: this.onDonePress,
-      doneButtonStyle: myButtonStyle(),
-
-
-      colorDot: Colors.white,
-      colorActiveDot: Colors.green,
-      // typeDotAnimation: dotSliderAnimation.SIZE_TRANSITION,
-      sizeDot: 15.0,
-
-      //hideStatusBar: true,
-      backgroundColorAllSlides: Colors.blue,
-
-
-      //verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          LanguagePickerWidget(),
+          SizedBox(width: 20,)
+        ],
+        title: Text("Localisation- Language change"),
+      ),
+      body: Container(
+        color: Colors.cyan[200],
+        height: 700,
+        width: 380,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlagWidget(),
+            SizedBox(height: 20,),
+            Text(
+                AppLocalizations.of(context)!.language,
+              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.red),
+            ),
+            SizedBox(height: 20,),
+            Text(
+              AppLocalizations.of(context)!.welcome,
+              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.black),
+            ),
+            SizedBox(height: 80,),
+            ElevatedButton(onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Intro()),
+              );
+            },
+                child: Text("Next Page"))
+          ],
+        ),
+      ),
     );
   }
 }
+
+
 
