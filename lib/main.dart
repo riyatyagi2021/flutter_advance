@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'home_main.dart';
+import 'home_buttons_list.dart';
 
 
 
@@ -77,7 +77,7 @@ import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'flag_widget.dart';
-import 'home_main.dart';
+import 'home_buttons_list.dart';
 import 'l10n/i18n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -156,7 +156,7 @@ class LanguageChange extends StatefulWidget {
 
 class _LanguageChangeState extends State<LanguageChange> {
 
-  @override
+/*  @override
   void initState() {
     super.initState();
 
@@ -165,7 +165,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 
       provider.clearLocale();
     });
-  }
+  }*/
 
 
   @override

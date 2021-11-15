@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
-import 'home_main.dart';
+import 'home_buttons_list.dart';
 
 class Intro extends StatefulWidget {
   const Intro({Key? key}) : super(key: key);
