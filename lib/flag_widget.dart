@@ -38,17 +38,19 @@ class LanguagePickerWidget extends StatefulWidget {
 }
 
 class _LanguagePickerWidgetState extends State<LanguagePickerWidget> {
-  Locale? locale;
+  Locale? localee;
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LocaleProvider>(context);
-    var locale = provider.locale ?? Locale('en');
+    var locale = provider.locale ;
 
     print(provider.locale?.languageCode);
     return DropdownButtonHideUnderline(
       child: DropdownButton(
-        value: locale,
-        icon: Container(width: 12),
+        value: localee,
+        icon: Container(width: 8),
+        dropdownColor: Colors.green[200],
+
         iconDisabledColor: Colors.yellow,
         iconEnabledColor: Colors.red,
         items: L10n.all.map(
@@ -66,21 +68,30 @@ class _LanguagePickerWidgetState extends State<LanguagePickerWidget> {
               onTap: () {
                 final provider =
                 Provider.of<LocaleProvider>(context, listen: false);
-              //  print(" code after tap"+ provider.locale?.toString());
+               print(" code after tap "+locale.languageCode);
                 provider.setLocale(locale);
+              // print(" code after tap and provider value  "+provider.locale!.languageCode.toString());
               },
             );
           },
         ).toList(),
-        onChanged: (_) {
-         /* setState(() {
-            locale=(value as Locale?)? ;
-          });*/
+        onChanged: ( value) {
+          setState(() {
+            localee=value as Locale?   ;
+          });
+          print(localee.toString()+" value");
         },
       ),
     );
   }
 }
+
+
+
+
+
+
+
 
 
 

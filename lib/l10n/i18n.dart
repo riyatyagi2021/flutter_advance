@@ -1,5 +1,5 @@
 
-
+import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class L10n{
@@ -7,7 +7,7 @@ class L10n{
   static final all=[
 
     Locale('hi', ''),
-    Locale('es', ''), //spanish
+    //Locale('es', ''), //spanish
     Locale('en', ''),
   ];
 
@@ -15,7 +15,7 @@ class L10n{
 
     switch(code){
       case 'hi':return '🇮🇳';
-      case 'es':return '🇪🇸';
+    //  case 'es':return '🇪🇸';
       default: return '🇺🇸';
     }
 

@@ -156,7 +156,7 @@ class LanguageChange extends StatefulWidget {
 
 class _LanguageChangeState extends State<LanguageChange> {
 
-/*  @override
+  @override
   void initState() {
     super.initState();
 
@@ -165,7 +165,7 @@ class _LanguageChangeState extends State<LanguageChange> {
 
       provider.clearLocale();
     });
-  }*/
+  }
 
 
   @override
@@ -176,12 +176,13 @@ class _LanguageChangeState extends State<LanguageChange> {
           LanguagePickerWidget(),
           SizedBox(width: 20,)
         ],
-        title: Text("Localisation- Language change"),
+        title: Text(" Language change"),
+        centerTitle: true,
       ),
       body: Container(
         color: Colors.cyan[200],
         height: 700,
-        width: 380,
+        width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

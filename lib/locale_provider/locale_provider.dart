@@ -11,7 +11,7 @@ class LocaleProvider extends ChangeNotifier{
     if(!L10n.all.contains(locale))
       return;
 
-    _locale=_locale;
+    _locale= locale;
     notifyListeners();
   }
 
