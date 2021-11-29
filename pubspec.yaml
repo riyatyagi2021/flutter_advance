@@ -60,6 +60,8 @@ dependencies:
   like_button: ^2.0.3
   camera:
   provider: ^5.0.0
+  webview_flutter: ^2.0.0
+  flutter_switch: ^0.3.2
 
 
 #  geolocator: ^7.0.0

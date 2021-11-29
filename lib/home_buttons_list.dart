@@ -1,7 +1,11 @@
 import 'package:advance_flutter/instagramm/instagram.dart';
 import 'package:advance_flutter/main.dart';
+import 'package:advance_flutter/others/add_ui.dart';
 import 'package:advance_flutter/others/animations.dart';
+import 'package:advance_flutter/others/canvas_objets.dart';
+import 'package:advance_flutter/others/date_time_web_url.dart';
 import 'package:advance_flutter/others/dropdown_list.dart';
+import 'package:advance_flutter/others/edit_ui.dart';
 import 'package:advance_flutter/others/google_map.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -218,6 +222,36 @@ class _HelloState extends State<Hello> {
                         primary: Colors.teal, padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => ShimmerEffect())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Date and Time Picker"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.orange, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => DatePicker())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Canvas"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => CanvasPractice())),
+                  ), SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Add"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => AddMode())),
+                  ), SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Edit"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => EditMode())),
                   ),
                 ],
               ),
