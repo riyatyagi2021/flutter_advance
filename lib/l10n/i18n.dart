@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class L10n{
+class L10n {
 
   static final all=[
 
@@ -10,6 +10,8 @@ class L10n{
     //Locale('es', ''), //spanish
     Locale('en', ''),
   ];
+
+
 
   static String getFlag(String code){
 

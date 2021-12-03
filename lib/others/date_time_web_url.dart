@@ -13,7 +13,8 @@ class DatePicker extends StatefulWidget {
 
 class _DatePickerState extends State<DatePicker> {
 
-  DateTime  currentDate=DateTime.now();
+  DateTime?  currentDate;
+
   TimeOfDay selectedTime = TimeOfDay.now();
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
@@ -21,9 +22,10 @@ class _DatePickerState extends State<DatePicker> {
 
 
   Future<void> selectDate(BuildContext context)async {
+    final initialDate=DateTime.now();
    final DateTime? datePicked=await showDatePicker(
        context: context,
-       initialDate: currentDate,
+       initialDate: initialDate,
        firstDate: DateTime(2000),
        lastDate: DateTime(2050),);
    if (datePicked != null && datePicked != currentDate)
@@ -65,7 +67,7 @@ class _DatePickerState extends State<DatePicker> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(currentDate.toString()),
+              Text("${currentDate?.day.toString()}/${currentDate?.month.toString()}/${currentDate?.year.toString()}"),
               ElevatedButton(
                 child: Text("Select Date"),
                 style: ElevatedButton.styleFrom(

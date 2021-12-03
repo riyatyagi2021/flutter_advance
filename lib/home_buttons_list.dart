@@ -1,12 +1,17 @@
 import 'package:advance_flutter/instagramm/instagram.dart';
 import 'package:advance_flutter/main.dart';
 import 'package:advance_flutter/others/add_ui.dart';
+import 'package:advance_flutter/others/animation3.dart';
 import 'package:advance_flutter/others/animations.dart';
+import 'package:advance_flutter/others/animations2.dart';
 import 'package:advance_flutter/others/canvas_objets.dart';
 import 'package:advance_flutter/others/date_time_web_url.dart';
 import 'package:advance_flutter/others/dropdown_list.dart';
 import 'package:advance_flutter/others/edit_ui.dart';
+import 'package:advance_flutter/others/bottomsheet.dart';
+import 'package:advance_flutter/others/flare_animations.dart';
 import 'package:advance_flutter/others/google_map.dart';
+import 'package:advance_flutter/others/stackoverflow.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +19,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'others/dialog_popup.dart';
 import 'others/shimmer_effect.dart';
 
 class Hello extends StatefulWidget {
@@ -227,7 +233,7 @@ class _HelloState extends State<Hello> {
                   ElevatedButton(
                     child: Text("Date and Time Picker"),
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.orange, padding: EdgeInsets.all(20)),
+                        primary: Color(0XFFe8320e), padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => DatePicker())),
                   ),
@@ -235,7 +241,7 @@ class _HelloState extends State<Hello> {
                   ElevatedButton(
                     child: Text("Canvas"),
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                        primary: Color.fromRGBO(196, 97, 212,1), padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => CanvasPractice())),
                   ), SizedBox(height: 20,),
@@ -253,6 +259,54 @@ class _HelloState extends State<Hello> {
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => EditMode())),
                   ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("StackOverflow"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Ani())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("BottomSheet"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Extra())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Dialogs"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => DialogAndPopUp())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("ANimation2"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => ANimations())),
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Flare"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => FlareAni()),
+                  )),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("Animation3"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Animation3()),
+                  )),
                 ],
               ),
             ]

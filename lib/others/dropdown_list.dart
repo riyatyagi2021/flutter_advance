@@ -15,6 +15,7 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Dropdown list"),
+        backgroundColor: Colors.transparent,
       ),
       body: Center(
         child: Container(

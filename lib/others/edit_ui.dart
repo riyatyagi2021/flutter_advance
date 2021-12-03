@@ -11,9 +11,36 @@ class EditMode extends StatefulWidget {
 }
 
 class _EditModeState extends State<EditMode> {
+  bool status=false;
+  DateTime  dateFrom=DateTime.now();
+  Future<void> selectDateFrom(BuildContext context)async {
+    final DateTime? datePicked=await showDatePicker(
+      context: context,
+      initialDate: dateFrom,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2050),);
+    if (datePicked != null && datePicked != dateFrom)
+      setState(() {
+        dateFrom = datePicked;
+      });
+  }
+  DateTime  dateTo=DateTime.now();
+  Future<void> selectDateTo(BuildContext context)async {
+    final DateTime? datePicked=await showDatePicker(
+      context: context,
+      initialDate: dateTo,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2050),);
+    if (datePicked != null && datePicked != dateTo)
+      setState(() {
+        dateTo = datePicked;
+      });
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    bool status3=false;
+
 
     return GestureDetector(
       onTap: () {
@@ -24,7 +51,7 @@ class _EditModeState extends State<EditMode> {
           centerTitle: false,
           automaticallyImplyLeading: false,
           title: Text(
-            'Edit a New Mode',
+            'Edit a Mode',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             textAlign: TextAlign.start,
           ),
@@ -32,22 +59,32 @@ class _EditModeState extends State<EditMode> {
         body:  SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 700,
+            height: 680,
             width: MediaQuery.of(context).size.width,
             child: Stack(
                 children:[
                   Container(
-                    margin: EdgeInsets.only(top: 40,left: 15,right: 15),
+                    margin: EdgeInsets.only(top: 30,left: 15,right: 15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          "Mode Name*",
-                          style: TextStyle(
-                              color: Color(0xff919191),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
+                        RichText(
+                          text: TextSpan(
+                              text: "Mode Name ",
+                              style: TextStyle(
+                                  color: Color(0xff919191),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                              children: [
+                                TextSpan(
+                                  text: '*',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red),
+                                )
+                              ]),
                         ),
                         SizedBox(height: 5,),
                         Container(
@@ -59,8 +96,9 @@ class _EditModeState extends State<EditMode> {
                             ],
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
+
                               contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 5.0),
+                                  horizontal: 10.0, vertical: 5.0),
                               border:  OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                               ),
@@ -71,12 +109,22 @@ class _EditModeState extends State<EditMode> {
                           ),
                         ),
                         SizedBox(height: 15,),
-                        Text(
-                          "Minutes per token (e.g.5)*",
-                          style: TextStyle(
-                              color: Color(0xff919191),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
+                        RichText(
+                          text: TextSpan(
+                              text: "Minutes per token (e.g.5)",
+                              style: TextStyle(
+                                  color: Color(0xff919191),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                              children: [
+                                TextSpan(
+                                  text: '*',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.red),
+                                )
+                              ]),
                         ),
                         SizedBox(height: 5,),
                         Container(
@@ -100,7 +148,7 @@ class _EditModeState extends State<EditMode> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40,),
+                        SizedBox(height: 30,),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Row(
@@ -127,10 +175,10 @@ class _EditModeState extends State<EditMode> {
                                 ],
                               ),
                               Container(
-                                  width: 70,
-                                  height: 70,
+                                  width: 100,
+                                  height: 100,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(35.0),
+                                      borderRadius: BorderRadius.circular(50.0),
                                       color: Color(0xff9fbed2)),
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
@@ -140,7 +188,7 @@ class _EditModeState extends State<EditMode> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 40,),
+                        SizedBox(height: 30,),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: Row(
@@ -173,13 +221,16 @@ class _EditModeState extends State<EditMode> {
                                           ),
                                           fillColor: Color(0xffdeeffb),
                                           filled: true,
-                                          hintText: 'Choose a date',
+                                          hintText: dateFrom==null?'Choose a date':dateFrom.toString(),
                                           floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
-                                          suffixIcon: Icon(
-                                            Icons.calendar_today_rounded,
-                                            color: Colors.blue,
-                                          )),
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              Icons.calendar_today_rounded,
+                                              color: Colors.blue,
+                                            ), onPressed:()=> selectDateFrom(context),
+                                          )
+                                      ),
                                     ),
                                   )
                                 ],
@@ -202,7 +253,6 @@ class _EditModeState extends State<EditMode> {
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(25),
                                       ],
-                                      keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
                                           contentPadding: const EdgeInsets.only(
                                             left: 4.0,),
@@ -212,13 +262,16 @@ class _EditModeState extends State<EditMode> {
                                           ),
                                           fillColor: Color(0xffdeeffb),
                                           filled: true,
-                                          hintText: 'Choose a date',
+                                          hintText:dateTo==null?'Choose a date':dateTo.toString(),
                                           floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
-                                          suffixIcon: Icon(
-                                            Icons.calendar_today,
-                                            color: Colors.blue,
-                                          )),
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              Icons.calendar_today_rounded,
+                                              color: Colors.blue,
+                                            ), onPressed:()=> selectDateTo(context),
+                                          )
+                                      ),
                                     ),
                                   )
                                 ],
@@ -245,10 +298,10 @@ class _EditModeState extends State<EditMode> {
                                   showOnOff: true,
                                   activeTextColor: Colors.white,
                                   inactiveTextColor: Colors.black,
-                                  value: status3,
+                                  value: status,
                                   onToggle: (val) {
                                     setState(() {
-                                      status3 = val;
+                                      status = val;
                                     });
                                   },
                                 ),
@@ -259,7 +312,7 @@ class _EditModeState extends State<EditMode> {
                         SizedBox(height: 20,),
                         Divider(
                           thickness: 2,),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 5,),
                         Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -52,7 +52,7 @@ class _AnimationsState extends State<Animations> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedContainer(
-                  duration: Duration(seconds: 1),
+                  duration: Duration(milliseconds: 1000),
                   height: height,
                   width: width,
                   decoration: BoxDecoration(color: color, borderRadius: border),
@@ -120,7 +120,7 @@ class _AnimationsState extends State<Animations> with TickerProviderStateMixin {
                         alignment: selected? Alignment.centerLeft: Alignment.centerRight,
                         duration: Duration(milliseconds: 500),
                       child: FlutterLogo(textColor: Colors.purple,size: 50,),
-                      curve: Curves.slowMiddle,
+                      curve: Curves.bounceOut,
                     ),
                   ),
                 ),

@@ -62,24 +62,19 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
     );
   }*/
 
-import 'package:advance_flutter/google_authenticatuon/google_sign_in.dart';
 import 'package:advance_flutter/locale_provider/locale_provider.dart';
 import 'package:advance_flutter/slider_demo.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/provider.dart';
+
 import 'flag_widget.dart';
-import 'home_buttons_list.dart';
 import 'l10n/i18n.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 // AndroidInitializationSettings('app_icon');
@@ -138,7 +133,7 @@ class MyApp extends StatelessWidget {
 
       locale: provider.locale,
       localizationsDelegates: [
-        AppLocalizations.delegate,
+       //AppLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
@@ -189,12 +184,14 @@ class _LanguageChangeState extends State<LanguageChange> {
             FlagWidget(),
             SizedBox(height: 20,),
             Text(
-                AppLocalizations.of(context)!.language,
+              "Hello",
+                //AppLocalizations.of(context)!.language,
               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.red),
             ),
             SizedBox(height: 20,),
             Text(
-              AppLocalizations.of(context)!.welcome,
+              "Hey",
+              //AppLocalizations.of(context)!.welcome,
               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.black),
             ),
             SizedBox(height: 80,),

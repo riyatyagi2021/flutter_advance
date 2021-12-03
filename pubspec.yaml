@@ -62,6 +62,7 @@ dependencies:
   provider: ^5.0.0
   webview_flutter: ^2.0.0
   flutter_switch: ^0.3.2
+  image_picker: 0.8.0
 
 
 #  geolocator: ^7.0.0
