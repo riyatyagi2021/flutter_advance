@@ -1,19 +1,25 @@
 import 'package:advance_flutter/instagramm/instagram.dart';
 import 'package:advance_flutter/main.dart';
-import 'package:advance_flutter/others/add_ui.dart';
+import 'package:advance_flutter/tasks_given/add_time_slot.dart';
+import 'package:advance_flutter/tasks_given/add_ui.dart';
 import 'package:advance_flutter/others/animation3.dart';
 import 'package:advance_flutter/others/animations.dart';
 import 'package:advance_flutter/others/animations2.dart';
 import 'package:advance_flutter/others/canvas_objets.dart';
 import 'package:advance_flutter/others/date_time_web_url.dart';
 import 'package:advance_flutter/others/dropdown_list.dart';
-import 'package:advance_flutter/others/edit_ui.dart';
+import 'package:advance_flutter/tasks_given/delete_mode.dart';
+import 'package:advance_flutter/tasks_given/edit_time_slot.dart';
+import 'package:advance_flutter/tasks_given/edit_ui.dart';
 import 'package:advance_flutter/others/bottomsheet.dart';
 import 'package:advance_flutter/others/flare_animations.dart';
 import 'package:advance_flutter/others/google_map.dart';
 import 'package:advance_flutter/others/stackoverflow.dart';
+import 'package:advance_flutter/tasks_given/enable_mode.dart';
+import 'package:advance_flutter/widgets/list_of_widgets.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -306,6 +312,36 @@ class _HelloState extends State<Hello> {
                         primary: Colors.blue, padding: EdgeInsets.all(20)),
                     onPressed: () => Navigator.push(
                         context, MaterialPageRoute(builder: (context) => Animation3()),
+                  )),SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("AddTimeSlot"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => AddTimeSlot()),
+                  )),SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("EditTimeSLot"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => EditTimeSlot()),
+                  )),SizedBox(height: 20,),
+                  ElevatedButton(
+                    child: Text("EnableMode"),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.blue, padding: EdgeInsets.all(20)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => EnableMode()),
+                  )
+                  ),SizedBox(height: 20,),
+                  CupertinoButton(
+                    child: Text("Widgetssss"),
+                    color: Colors.red,
+                    // style: ElevatedButton.styleFrom(
+                    //     primary: Colors.grey, padding: EdgeInsets.all(50)),
+                    onPressed: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => WidgetsList()),
                   )),
                 ],
               ),

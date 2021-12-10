@@ -62,6 +62,8 @@ class _PhoneAuthenticationState extends State<PhoneAuthentication> {
     );
   }*/
 
+import 'dart:io';
+
 import 'package:advance_flutter/locale_provider/locale_provider.dart';
 import 'package:advance_flutter/slider_demo.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -99,6 +101,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage msg) async{
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  stdout.write("object+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
   FirebaseMessaging.onBackgroundMessage((firebaseMessagingBackgroundHandler));
 
@@ -127,10 +130,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       themeMode: ThemeMode.dark,
       //darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+      primarySwatch: Colors.blue,
+      unselectedWidgetColor: Colors.blue, // <-- your color
+    ),
       home: LanguageChange(),
       debugShowCheckedModeBanner: false,
       supportedLocales: L10n.all,
-
       locale: provider.locale,
       localizationsDelegates: [
        //AppLocalizations.delegate,

@@ -42,8 +42,9 @@ class _CanvasPracticeState extends State<CanvasPractice>
             children: [
               toggle
                   ? Container(
-                      height: 100,
-                      width: 300,
+                color: Colors.green,
+                height: 50,
+                width: 60,
                       // color:Colors.orange ,
                       child: GestureDetector(
                         child: CustomPaint(
@@ -57,8 +58,9 @@ class _CanvasPracticeState extends State<CanvasPractice>
                       ),
                     )
                   : Container(
-                      height: 100,
-                      width: 300,
+                      height: 50,
+                      width: 60,
+                      color: Colors.green,
                       //  color:Colors.orange ,
                       child: GestureDetector(
                         child: CustomPaint(
@@ -149,7 +151,7 @@ class ToggleON extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final textStyle = TextStyle(
-        color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+        color: Colors.black, fontSize: 14, );
     final textSpan = TextSpan(
       text: 'ON',
       style: textStyle,
@@ -162,17 +164,17 @@ class ToggleON extends CustomPainter {
       minWidth: 0,
       maxWidth: size.width,
     );
-    final xCenter = (size.width - textPainter.width) / 2;
+    final xCenter = (size.width - textPainter.width) / 3;
     final yCenter = (size.height - textPainter.height) / 2;
     final offset = Offset(xCenter, yCenter);
 
-    final a = Offset(size.width * 1.5 / 4, size.height * 1 / 4);
-    final b = Offset(size.width * 3 / 4, size.height * 3 / 4);
+    final a = Offset(size.width * 0.1 / 4, size.height * 1 / 4);
+    final b = Offset(size.width * 9.9 / 10, size.height * 3 / 4);
     final rect = Rect.fromPoints(a, b);
     final radius = Radius.circular(50);
-    final center = Offset(size.width * 1.97 / 3, size.height / 2);
+    final center = Offset(size.width * 2.4 / 3, size.height / 2);
     canvas.drawRRect(RRect.fromRectAndRadius(rect, radius), paint);
-    canvas.drawCircle(center, size.width * .89 / 12, paint1);
+    canvas.drawCircle(center, size.width * 2.4 / 13, paint1);
     textPainter.paint(canvas, offset);
   }
 
@@ -186,16 +188,17 @@ class ToggleOFF extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.grey
-      ..strokeWidth = 10
-      ..style = PaintingStyle.fill;
+      ..color = Colors.blue
+      ..strokeWidth = 2
+    ..style=PaintingStyle.stroke
+       ;
     final paint1 = Paint()
-      ..color = Colors.white
-      ..strokeWidth = 10
-      ..style = PaintingStyle.fill;
+      ..color = Colors.blue
+      ..strokeWidth = 2
+      ..style=PaintingStyle.stroke;
 
     final textStyle = TextStyle(
-        color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+        color: Colors.black, fontSize: 14);
     final textSpan = TextSpan(
       text: 'OFF',
       style: textStyle,
@@ -208,17 +211,17 @@ class ToggleOFF extends CustomPainter {
       minWidth: 0,
       maxWidth: size.width,
     );
-    final xCenter = (size.width - textPainter.width) / 1.5;
+    final xCenter = (size.width - textPainter.width) / 1.2;
     final yCenter = (size.height - textPainter.height) / 2;
     final offset = Offset(xCenter, yCenter);
 
-    final a = Offset(size.width * 1.5 / 4, size.height * 1 / 4);
-    final b = Offset(size.width * 3 / 4, size.height * 3 / 4);
+    final a = Offset(size.width * 0.1 / 4, size.height * 1 / 4);
+    final b = Offset(size.width * 9.9 / 10, size.height * 3 / 4);
     final rect = Rect.fromPoints(a, b);
     final radius = Radius.circular(50);
-    final center = Offset(size.width * 1.4 / 3, size.height / 2);
+    final center = Offset(size.width * 0.6 / 3, size.height / 2);
     canvas.drawRRect(RRect.fromRectAndRadius(rect, radius), paint);
-    canvas.drawCircle(center, size.width * .89 / 12, paint1);
+    canvas.drawCircle(center, size.width * 2.31 / 13, paint1);
     textPainter.paint(canvas, offset);
   }
 
