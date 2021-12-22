@@ -70,6 +70,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -139,7 +140,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: L10n.all,
       locale: provider.locale,
       localizationsDelegates: [
-       //AppLocalizations.delegate,
+       AppLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
@@ -190,14 +191,14 @@ class _LanguageChangeState extends State<LanguageChange> {
             FlagWidget(),
             SizedBox(height: 20,),
             Text(
-              "Hello",
-                //AppLocalizations.of(context)!.language,
+              //"Hello",
+                AppLocalizations.of(context)!.language,
               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.red),
             ),
             SizedBox(height: 20,),
             Text(
-              "Hey",
-              //AppLocalizations.of(context)!.welcome,
+              //"Hey",
+              AppLocalizations.of(context)!.welcome,
               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.black),
             ),
             SizedBox(height: 80,),

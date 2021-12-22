@@ -45,43 +45,41 @@ class _LanguagePickerWidgetState extends State<LanguagePickerWidget> {
     var locale = provider.locale ;
 
     print(provider.locale?.languageCode);
-    return DropdownButtonHideUnderline(
-      child: DropdownButton(
-        value: localee,
-        icon: Container(width: 8),
-        dropdownColor: Colors.green[200],
+    return DropdownButton(
+      value: localee,
+      icon: Container(width: 8),
+      dropdownColor: Colors.green[200],
 
-        iconDisabledColor: Colors.yellow,
-        iconEnabledColor: Colors.red,
-        items: L10n.all.map(
-              (locale) {
-            final flag = L10n.getFlag(locale.languageCode);
-            print(locale.toString()+"  codes");
-            return DropdownMenuItem(
-              child: Center(
-                child: Text(
-                  flag,
-                  style: TextStyle(fontSize: 20),
-                ),
+      iconDisabledColor: Colors.yellow,
+      iconEnabledColor: Colors.red,
+      items: L10n.all.map(
+            (locale) {
+          final flag = L10n.getFlag(locale.languageCode);
+          print(locale.toString()+"  codes");
+          return DropdownMenuItem(
+            child: Center(
+              child: Text(
+                flag,
+                style: TextStyle(fontSize: 20),
               ),
-              value: locale,
-              onTap: () {
-                final provider =
-                Provider.of<LocaleProvider>(context, listen: false);
-               print(" code after tap "+locale.languageCode);
-                provider.setLocale(locale);
-              // print(" code after tap and provider value  "+provider.locale!.languageCode.toString());
-              },
-            );
-          },
-        ).toList(),
-        onChanged: ( value) {
-          setState(() {
-            localee=value as Locale?   ;
-          });
-          print(localee.toString()+" value");
+            ),
+            value: locale,
+            onTap: () {
+              final provider =
+              Provider.of<LocaleProvider>(context, listen: false);
+             print(" code after tap "+locale.languageCode);
+              provider.setLocale(locale);
+            // print(" code after tap and provider value  "+provider.locale!.languageCode.toString());
+            },
+          );
         },
-      ),
+      ).toList(),
+      onChanged: ( value) {
+        setState(() {
+          localee=value as Locale?   ;
+        });
+        print(localee.toString()+" value");
+      },
     );
   }
 }
