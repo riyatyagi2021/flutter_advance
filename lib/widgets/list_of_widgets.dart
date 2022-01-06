@@ -1,3 +1,5 @@
+import 'package:advance_flutter/widgets/widgets_list/confetti_animation.dart';
+import 'package:advance_flutter/widgets/widgets_list/expansion_tile.dart';
 import 'package:advance_flutter/widgets/widgets_list/internet_connection.dart';
 import 'package:advance_flutter/widgets/widgets_list/sliver_appbar.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +57,30 @@ class _WidgetsListState extends State<WidgetsList> {
                       primary: Colors.green, padding: EdgeInsets.all(20)),
                   onPressed: () => Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Check())),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  child: Text("Expansion Tile"),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green, padding: EdgeInsets.all(20)),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExpansionTileDemo())),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  child: Text("Confetti Animation"),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green, padding: EdgeInsets.all(20)),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ConfettiAnimationn())),
                 ),
               ],
             ),
