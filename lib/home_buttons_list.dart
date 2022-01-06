@@ -8,7 +8,6 @@ import 'package:advance_flutter/others/animations2.dart';
 import 'package:advance_flutter/others/canvas_objets.dart';
 import 'package:advance_flutter/others/date_time_web_url.dart';
 import 'package:advance_flutter/others/dropdown_list.dart';
-import 'package:advance_flutter/tasks_given/delete_mode.dart';
 import 'package:advance_flutter/tasks_given/edit_time_slot.dart';
 import 'package:advance_flutter/tasks_given/edit_ui.dart';
 import 'package:advance_flutter/others/bottomsheet.dart';
@@ -43,7 +42,7 @@ class _HelloState extends State<Hello> {
 
 
 
-//// Animationnnsss for pag routing
+//// Animationnnsss for page routing
   Route _createRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => const Instagram(),

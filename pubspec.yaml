@@ -63,6 +63,8 @@ dependencies:
   webview_flutter: ^2.0.0
   flutter_switch: ^0.3.2
   image_picker: 0.8.0
+  connectivity: ^3.0.6
+  overlay_support: ^1.2.1               #for showing notifications at top
 
 
 #  geolocator: ^7.0.0

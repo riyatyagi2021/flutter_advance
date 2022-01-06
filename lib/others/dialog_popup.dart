@@ -64,7 +64,8 @@ class _DialogAndPopUpState extends State<DialogAndPopUp> {
                         backgroundColor: Colors.yellow)),
                 SizedBox(height: 20,),
                 TextButton(
-                    onPressed: ()=>showDialog(context: context, builder: (BuildContext context) {
+                    onPressed: ()=>
+                        showDialog(context: context, builder: (BuildContext context) {
                       return Dialog(
                         child: Container(
                           height: 300,
